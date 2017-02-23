@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NEWSV_ArtifactId.iml" filepath="$PROJECT_DIR$/.idea/modules/NEWSV_ArtifactId.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NEWSV_ArtifactId_main.iml" filepath="$PROJECT_DIR$/.idea/modules/NEWSV_ArtifactId_main.iml" group="NEWSV_ArtifactId" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NEWSV_ArtifactId_test.iml" filepath="$PROJECT_DIR$/.idea/modules/NEWSV_ArtifactId_test.iml" group="NEWSV_ArtifactId" />
+    </modules>
+  </component>
+</project>
