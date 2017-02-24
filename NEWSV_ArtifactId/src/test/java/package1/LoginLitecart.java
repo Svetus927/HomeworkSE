@@ -27,7 +27,7 @@ public class LoginLitecart {
         }
         @Test
         public void myfirstTest() {
-            driver.navigate().to ("http://localhost/litecart/admin/login.php?redirect_url=%2Flitecart%2Fadmin%2F");
+            driver.navigate().to ("http://localhost/litecart/admin/");
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             wait.until(titleIs("My Store"));
             driver.findElement(By.name("username")).sendKeys("admin");
