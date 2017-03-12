@@ -5,6 +5,7 @@ package package1;
         import org.junit.Test;
         import org.openqa.selenium.By;
         import org.openqa.selenium.WebDriver;
+        import org.openqa.selenium.WebElement;
         import org.openqa.selenium.chrome.ChromeDriver;
         import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,7 +27,8 @@ public class MyfirstTest  {
         driver.navigate().to ("https://www.google.com");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(By.name("q")).sendKeys("webdriver");
-        driver.findElement(By.name("btnG")).click();
+        WebElement btng =  driver.findElement(By.name("btnG"));
+        btng.click();
         wait.until(titleIs("webdriver - Buscar con Google"));
     }
 
@@ -35,6 +37,8 @@ public class MyfirstTest  {
         driver.navigate().to("https://www.google.com");
         wait.until((WebDriver d) -> d.findElement(By.name("q"))).sendKeys("webdriver");
         driver.findElement(By.name("btnG")).click();
+
+                //.click();
         wait.until(titleIs("webdriver - Buscar con Google"));
     }
 /*
@@ -52,6 +56,7 @@ public class MyfirstTest  {
        driver.quit();
        driver = null;
    }
+
 
 }
 
