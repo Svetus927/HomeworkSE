@@ -25,6 +25,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+
 public class CampaignGood {
     private WebDriver driver;
     private WebDriverWait wait;
@@ -41,7 +42,7 @@ public class CampaignGood {
 
         String targetUrl ="http://localhost/litecart/";
         String targettitle = "Online Store | My Store";
-       // loginAsAdmin(targetUrl, targettitle);
+       // loginAsAdmin(targetUrl, targettitle);        // driver.navigate().back();     wait.until(urlToBe(countryUrl));
         driver.navigate().to (targetUrl);
         wait.until(titleIs(targettitle));
 
@@ -53,9 +54,7 @@ public class CampaignGood {
         priceWrapper.click();
         wait.until(titleContains("Subcategory"));
 
-
-
-        System.out.println("Cprocess is going ");
+        System.out.println("process is going ");
 
     }
 
