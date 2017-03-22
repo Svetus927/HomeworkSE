@@ -2,7 +2,20 @@ package package1;
 
 /**
  * Created by Svetlana Verkholantceva on 20/03/2017.
- * Задание 14. 
+ * Задание 14. Проверьте, что ссылки открываются в новом окне
+
+ Сделайте сценарий, который проверяет, что ссылки на странице редактирования страны открываются в новом окне.
+
+ Сценарий должен состоять из следующих частей:
+
+ 1) зайти в админку
+ 2) открыть пункт меню Countries (или страницу http://localhost/litecart/admin/?app=countries&doc=countries)
+ 3) открыть на редактирование какую-нибудь страну или начать создание новой
+ 4) возле некоторых полей есть ссылки с иконкой в виде квадратика со стрелкой -- они ведут на внешние страницы и открываются в новом окне, именно это и нужно проверить.
+
+ Конечно, можно просто убедиться в том, что у ссылки есть атрибут target="_blank". Но в этом упражнении требуется именно кликнуть по ссылке, чтобы она открылась в новом окне, потом переключиться в новое окно, закрыть его, вернуться обратно, и повторить эти действия для всех таких ссылок.
+
+ Не забудьте, что новое окно открывается не мгновенно, поэтому требуется ожидание открытия окна.
 
  */
 import org.junit.After;
@@ -78,9 +91,9 @@ public class NewWindowOpen {
     }
 
     public String thereIsWindowOtherThan (Set<String> oldWindowHandles) {
-        Set<String> newWindowHandles = driver.getWindowHandles();
+        Set<String> newWindowHandles = driver.getWindowHandles(); // неупорядоч множество элементов типа string
         System.out.println("After clicling external link  open window qty =  " + newWindowHandles.size());
-        for (String newWindowHandle : newWindowHandles) {
+        for (String newWindowHandle : newWindowHandles) { // для каждого эл-та в множестве стрингов
             if (!oldWindowHandles.contains(newWindowHandle)) {
 
                 System.out.println("New window handle is:  " + newWindowHandle);
