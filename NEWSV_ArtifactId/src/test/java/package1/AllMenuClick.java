@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 import static javax.swing.text.html.CSS.getAttribute;
 import static junit.framework.TestCase.assertTrue;
@@ -26,6 +27,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -38,9 +43,18 @@ public class AllMenuClick {
 
     @Before
     public void start() {
+// * Устанавливаем более  широкий уровень логгирования:
+        LoggingPreferences logPrefs = new LoggingPreferences();
+        logPrefs.enable(LogType.BROWSER, Level.ALL);
+        logPrefs.enable(LogType.DRIVER, Level.ALL);
+        logPrefs.enable(LogType.CLIENT, Level.ALL);
 
-        driver = new ChromeDriver();
+        DesiredCapabilities cap = new DesiredCapabilities();
+        cap.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+        driver = new ChromeDriver(cap);
+//        driver = new ChromeDriver();
         wait = new WebDriverWait(driver,10);
+        System.out.println(driver.manage().logs().getAvailableLogTypes());
 
     }
     @Test
@@ -49,6 +63,7 @@ public class AllMenuClick {
         String countryUrl = "http://localhost/litecart/admin/?app=countries&doc=countries";
         String titleCountries = "Countries | My Store";
         loginAsAdmin(countryUrl, titleCountries);
+
 
         int itemSize = driver.findElements(By.cssSelector("li#app-")).size();
 
@@ -81,6 +96,7 @@ public class AllMenuClick {
         driver.findElement(By.name("password")).sendKeys("admin");
         driver.findElement(By.name("login")).click();
         wait.until(titleIs(waitForTitle));
+
     }
     public void findHeader (String cssSel) {
 
@@ -88,12 +104,16 @@ public class AllMenuClick {
     assertTrue("No header on a page got by clicking on "+cssSel,!(header==null));
 
     String head = header.getAttribute("textContent").substring(8);
-
-
-    System.out.println("HEADER IS " + head);
+    //System.out.println("HEADER IS " + head);
+        System.out.println("logs qty = " + driver.manage().logs().get("driver").getAll().size());
+        for (LogEntry l : driver.manage().logs().get("driver")) {
+            System.out.println( l);
+        }
+       // driver.manage().logs().get("browser").getAll().forEach(l -> System.out.println(l));
     }
     @After
     public void stop() {
+
         driver.quit();
         driver = null;
     }

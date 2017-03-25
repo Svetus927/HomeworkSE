@@ -54,7 +54,6 @@ public class CampaignGood {
         priceWrapper.click();
         wait.until(titleContains("Subcategory"));
 
-        System.out.println("process is going ");
 
     }
 
